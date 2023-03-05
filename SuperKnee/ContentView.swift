@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var forceDataManager: ForceDataManager
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
