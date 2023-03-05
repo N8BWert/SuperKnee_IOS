@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct SuperKneeApp: App {
+    @StateObject var forceDataManager: ForceDataManager = ForceDataManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(forceDataManager)
         }
     }
 }

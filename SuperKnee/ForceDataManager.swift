@@ -16,9 +16,9 @@ class ForceDataManager: ObservableObject {
         timeData = [Float](repeating: 0.0, count: 20)
     }
     
-    func getRecentData() async -> ForceData {
-        guard let url = URL(string: "http://127.0.0.1:8000/") else {
-            return fakeForceData
+    func getRecentData() async -> (String, ForceData) {
+        guard let url = URL(string: "http://143.215.84.249:5000/") else {
+            return ("bad url", fakeForceData)
         }
         
         var request = URLRequest(url: url)
@@ -29,7 +29,7 @@ class ForceDataManager: ObservableObject {
         do {
             (data, _) = try await URLSession.shared.data(for: request)
         } catch {
-            return fakeForceData
+            return ("url session failed", fakeForceData)
         }
         
         let decoder = JSONDecoder()
@@ -40,9 +40,9 @@ class ForceDataManager: ObservableObject {
         do {
             forceData = try decoder.decode(ForceData.self, from: data)
         } catch {
-            return fakeForceData
+            return ("failed to decode data", fakeForceData)
         }
         
-        return forceData
+        return ("", forceData)
     }
 }

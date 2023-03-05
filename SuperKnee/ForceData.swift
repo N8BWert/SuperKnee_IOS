@@ -8,9 +8,9 @@
 import Foundation
 
 struct ForceData: Codable {
-    var firstData: [Float]
-    var secondData: [Float]
-    var thirdData: [Float]
+    var firstData: [String]
+    var secondData: [String]
+    var thirdData: [String]
 }
 
-static let fakeForceData = ForceData(firstData: [], secondData: [], thirdData: [])
+let fakeForceData = ForceData(firstData: [], secondData: [], thirdData: [])
